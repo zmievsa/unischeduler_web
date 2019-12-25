@@ -1,0 +1,5 @@
+# Automatically created
+*.pyc
+*.json
+*.code-workspace
+.mypy_cache
