@@ -3,7 +3,8 @@ from setuptools import setup
 
 requires = [
     'unischeduler',
-    'flask'
+    'flask',
+    'waitress'
 ]
 
 setup(
