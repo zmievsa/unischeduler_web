@@ -13,9 +13,8 @@ def main_page():
 
 @app.route('/make_ical/')
 def make_ical():
-    i = request.args.get("schedule")
     return send_file(
-        io.BytesIO(unischeduler.main(i, bool(request.args.get("isUCF")))),
+        io.BytesIO(unischeduler.main(request.args.get("schedule"), bool(request.args.get("isUCF")))),
         mimetype="text/calendar",
         as_attachment=True,
         attachment_filename="Classes.ics")
