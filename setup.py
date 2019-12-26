@@ -9,7 +9,7 @@ requires = [
 
 setup(
     name="unischeduler_web",
-    version="0.1",
+    version="0.2",
     packages=['unischeduler_web'],
     install_requires=requires,
 
