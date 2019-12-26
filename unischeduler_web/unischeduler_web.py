@@ -29,7 +29,7 @@ def make_ical():
         with open("log", 'a') as f:
                 print(e)
                 f.write(f"\nisUCF={isUCF}\n{schedule}\n")
-                print_exception(*sys.exc_info, file=f)
+                print_exception(*sys.exc_info(), file=f)
         return "An unknown error occured. Contact my developer and he'll fix it ASAP."
 
 
