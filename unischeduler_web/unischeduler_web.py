@@ -4,7 +4,7 @@ import unischeduler
 
 
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+# app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/')
 def main_page():
@@ -13,11 +13,19 @@ def main_page():
 
 @app.route('/make_ical/')
 def make_ical():
-    return send_file(
-        io.BytesIO(unischeduler.main(request.args.get("schedule"), bool(request.args.get("isUCF")))),
-        mimetype="text/calendar",
-        as_attachment=True,
-        attachment_filename="Classes.ics")
+    try:
+        return send_file(
+            io.BytesIO(unischeduler.main(request.args.get("schedule"), bool(request.args.get("isUCF")))),
+            mimetype="text/calendar",
+            as_attachment=True,
+            attachment_filename="Classes.ics")
+    except unischeduler.util.SchedulerError as e:
+        return str(e)
+
+
+@app.route('/guide/')
+def guide_page():
+    return send_file("static/README.pdf", mimetype="application/pdf")
 
 
 if __name__ == "__main__":

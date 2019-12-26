@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        .content {
+            max-width: 500px;
+            margin: auto;
+        }
+        textarea {
+            resize: none;
+        }
+    </style>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
 <body>
 
-<h1>Unischeduler</h1>
-<form action="/make_ical/">
-    Please, paste your schedule in the field below:
-    <br><textarea rows="5" cols="60" name="schedule"/></textarea><br>
-    Are you a UCF student? <input type="checkbox" name="isUCF"><br>
-    <input type="submit" value="Submit">
-</form>
+    <div class="content">
+        <h1>Unischeduler</h1>
+        <p>I convert your schedule to a format that can be exported into any calendar service.</p>
+        <p>Don't know how to use me? Here's the <a href="/guide/">guide</a>!</p>
+        <form action="/make_ical/">
+            Please, paste your schedule in the field below:
+            <br><textarea rows="5" cols="60" name="schedule" autofocus required></textarea><br>
+            Are you a UCF student? <input type="checkbox" name="isUCF"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
 </body>
 </html>
