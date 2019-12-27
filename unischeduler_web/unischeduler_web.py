@@ -5,9 +5,8 @@ from traceback import format_exception
 import sys
 import atexit
 from counting import retrieve_counters, save_counters, increment
-from multiprocessing import get_logger
-from pathlib import Path 
-import logging
+from util import get_logger
+from pathlib import Path
 
 CURRENT_DIR = Path(__file__).parent
 PATH_TO_COUNTER_DB = CURRENT_DIR / "data/counters.ini"
@@ -18,10 +17,7 @@ COUNTER_NAMES = ("total_uses", "successful_use", "unknown_error")
 app = Flask(__name__)
 counters = retrieve_counters(PATH_TO_COUNTER_DB, COUNTER_NAMES)
 atexit.register(save_counters, PATH_TO_COUNTER_DB, counters)
-log = get_logger()
-log.setLevel("INFO")
-log.addHandler(logging.StreamHandler(sys.stdout))
-log.addHandler(logging.FileHandler(PATH_TO_LOG))
+log = get_logger(PATH_TO_LOG)
 
 
 @app.route('/')
@@ -48,6 +44,7 @@ def make_ical():
         return "An unknown error occured. Contact my developer and he'll fix it ASAP."
     else:
         increment(counters['successful_use'])
+        log.debug(f"Successful use {counters['successful_use'].value}")
         return response
 
 
