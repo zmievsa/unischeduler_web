@@ -1,22 +1,28 @@
-# TODO: Add logging
-
 from flask import Flask, send_file, render_template, request
 import io
 import unischeduler
-from traceback import print_exception
+from traceback import format_exception
 import sys
 import atexit
 from counting import retrieve_counters, save_counters, increment
+from multiprocessing import get_logger
 from pathlib import Path 
+import logging
 
 CURRENT_DIR = Path(__file__).parent
-PATH_TO_COUNTER_DB = CURRENT_DIR / "counters.ini"
+PATH_TO_COUNTER_DB = CURRENT_DIR / "data/counters.ini"
+PATH_TO_LOG = CURRENT_DIR / "data/debug.log"
 COUNTER_NAMES = ("total_uses", "successful_use", "unknown_error")
 
 
 app = Flask(__name__)
 counters = retrieve_counters(PATH_TO_COUNTER_DB, COUNTER_NAMES)
 atexit.register(save_counters, PATH_TO_COUNTER_DB, counters)
+log = get_logger()
+log.setLevel("INFO")
+log.addHandler(logging.StreamHandler(sys.stdout))
+log.addHandler(logging.FileHandler(PATH_TO_LOG))
+
 
 @app.route('/')
 def main_page():
@@ -38,9 +44,7 @@ def make_ical():
         return str(e)
     except Exception as e:
         increment(counters['unknown_error'])
-        with open(CURRENT_DIR / "log", 'a') as f:
-                print(f"Unknown error: {e}")
-                print_exception(*sys.exc_info(), file=f)
+        log.error(f"isUCF={isUCF}\n{''.join(format_exception(*sys.exc_info()))}")
         return "An unknown error occured. Contact my developer and he'll fix it ASAP."
     else:
         increment(counters['successful_use'])
@@ -53,5 +57,6 @@ def guide_page():
 
 
 if __name__ == "__main__":
+    log.info("Application start")
     from waitress import serve
     serve(app, host='0.0.0.0', port=80)
