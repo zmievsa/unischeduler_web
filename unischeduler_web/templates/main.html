@@ -6,8 +6,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
             .content {
+                position: relative;
                 max-width: 500px;
                 margin: auto;
+                z-index: 2;
             }
             .inner-content {
                 margin-left: 1em;
@@ -29,6 +31,15 @@
                 margin-left: 0;
                 margin-right: 0;
             }
+            #footer {
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                font-size: small;
+                z-index: 1;
+                text-align: center;
+                font-style: italic;
+            }
         </style>
     </head>
 <body>
@@ -46,6 +57,10 @@
             </form>
         </div>
     </div>
-
+    <footer id="footer">
+        <p>I've already converted {{successful_uses_count}} schedules!</p>
+        <p>Contact information: <a href="mailto:publicoatmeal@gmail.com">
+            publicoatmeal@gmail.com</p>
+        </footer> 
 </body>
 </html>

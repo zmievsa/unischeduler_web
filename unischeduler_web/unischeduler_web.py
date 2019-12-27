@@ -11,7 +11,7 @@ from pathlib import Path
 CURRENT_DIR = Path(__file__).parent
 PATH_TO_COUNTER_DB = CURRENT_DIR / "data/counters.ini"
 PATH_TO_LOG = CURRENT_DIR / "data/debug.log"
-COUNTER_NAMES = ("total_uses", "successful_use", "unknown_error")
+COUNTER_NAMES = ("total_uses", "successful_uses", "unknown_error")
 
 
 app = Flask(__name__)
@@ -22,7 +22,7 @@ log = get_logger(PATH_TO_LOG)
 
 @app.route('/')
 def main_page():
-    return render_template("main.html")
+    return render_template("main.html", successful_uses_count=counters['successful_uses'].value)
 
 
 @app.route('/make_ical/')
@@ -43,8 +43,7 @@ def make_ical():
         log.error(f"isUCF={isUCF}\n{''.join(format_exception(*sys.exc_info()))}")
         return "An unknown error occured. Contact my developer and he'll fix it ASAP."
     else:
-        increment(counters['successful_use'])
-        log.debug(f"Successful use {counters['successful_use'].value}")
+        increment(counters['successful_uses'])
         return response
 
 
