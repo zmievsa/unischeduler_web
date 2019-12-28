@@ -10,12 +10,15 @@ pip3 install --user pipenv
 
 cd ~
 
-# If we add this to .bashrc, it stops working
-PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
-PATH="$PATH:$PYTHON_BIN_PATH"
+# for the future
+echo "export PIPENV_VENV_IN_PROJECT=1
+PYTHON_BIN_PATH='$(python3 -m site --user-base)/bin'
+PATH='$PATH:$PYTHON_BIN_PATH'" >> .bashrc # To have virtualenv inside project dir
 
-echo "export PIPENV_VENV_IN_PROJECT=1" >> .bashrc # To have virtualenv inside project dir
-source .bashrc
+# Source .bashrc does not work from shell script
+export PIPENV_VENV_IN_PROJECT=1
+PYTHON_BIN_PATH='$(python3 -m site --user-base)/bin'
+PATH='$PATH:$PYTHON_BIN_PATH'
 
 cd unischeduler_web
 pipenv install -e . # install from setup.py
