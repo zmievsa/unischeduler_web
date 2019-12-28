@@ -1,12 +1,14 @@
-from flask import Flask, send_file, render_template, request
-import io
-import unischeduler
-from traceback import format_exception
-import sys
 import atexit
-from counting import retrieve_counters, save_counters, increment
-from util import get_logger
+import io
+import sys
 from pathlib import Path
+from traceback import format_exception
+
+import unischeduler
+from flask import Flask, render_template, request, send_file
+
+from counting import increment, retrieve_counters, save_counters
+from util import get_logger
 
 CURRENT_DIR = Path(__file__).parent
 PATH_TO_COUNTER_DB = CURRENT_DIR / "data/counters.ini"
@@ -41,7 +43,8 @@ def make_ical():
         return str(e)
     except Exception as e:
         increment(counters['unknown_error'])
-        log.error(f"isUCF={isUCF}\n{''.join(format_exception(*sys.exc_info()))}")
+        error = ''.join(format_exception(*sys.exc_info()))
+        log.error(f"isUCF={isUCF}\n{error}")
         return "An unknown error occured. Contact my developer and he'll fix it ASAP."
     else:
         increment(counters['successful_uses'])

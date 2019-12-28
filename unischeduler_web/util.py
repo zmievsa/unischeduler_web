@@ -1,6 +1,7 @@
-import multiprocessing
 import logging
+import multiprocessing
 import sys
+
 
 def get_logger(log_path):
     log = multiprocessing.get_logger()
