@@ -1,6 +1,6 @@
 # Must be logged in as non-root sudo user
 sudo apt update
-sudo apt install nginx python3 python3-pip python3-dev ufw
+sudo apt install nginx python3 python3-pip python3-dev ufw git
 # Configure firewall
 sudo ufw allow OpenSSH
 sudo ufw allow 'Nginx Full'
