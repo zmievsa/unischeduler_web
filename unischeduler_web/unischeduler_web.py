@@ -4,8 +4,8 @@ import unischeduler
 from traceback import format_exception
 import sys
 import atexit
-from counting import retrieve_counters, save_counters, increment
-from util import get_logger
+from .counting import retrieve_counters, save_counters, increment
+from .util import get_logger
 from pathlib import Path
 
 CURRENT_DIR = Path(__file__).parent
