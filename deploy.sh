@@ -9,7 +9,10 @@ sudo ufw enable
 pip3 install --user pipenv
 
 cd ~
-echo "export PIPENV_VENV_IN_PROJECT=1" >> .bashrc # To have virtualenv inside project dir
+
+echo "export PIPENV_VENV_IN_PROJECT=1
+PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
+PATH="$PATH:$PYTHON_BIN_PATH"" >> .bashrc # To have virtualenv inside project dir
 source .bashrc
 
 cd unischeduler_web
