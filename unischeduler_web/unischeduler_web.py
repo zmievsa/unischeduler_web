@@ -18,6 +18,7 @@ app = Flask(__name__)
 counters = retrieve_counters(PATH_TO_COUNTER_DB, COUNTER_NAMES)
 atexit.register(save_counters, PATH_TO_COUNTER_DB, counters)
 log = get_logger(PATH_TO_LOG)
+log.info("Application start")
 
 
 @app.route('/')
@@ -50,9 +51,3 @@ def make_ical():
 @app.route('/guide/')
 def guide_page():
     return send_file("static/README.pdf", mimetype="application/pdf")
-
-
-if __name__ == "__main__":
-    log.info("Application start")
-    from waitress import serve
-    serve(app, host='0.0.0.0', port=80)

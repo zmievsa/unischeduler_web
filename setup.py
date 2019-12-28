@@ -4,7 +4,7 @@ from setuptools import setup
 requires = [
     'unischeduler',
     'flask',
-    'waitress'
+    'gunicorn'
 ]
 
 setup(
