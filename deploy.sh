@@ -17,8 +17,8 @@ PATH='$PATH:$PYTHON_BIN_PATH'" >> .bashrc # To have virtualenv inside project di
 
 # Source .bashrc does not work from shell script
 export PIPENV_VENV_IN_PROJECT=1
-PYTHON_BIN_PATH='$(python3 -m site --user-base)/bin'
-PATH='$PATH:$PYTHON_BIN_PATH'
+PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
+PATH="$PATH:$PYTHON_BIN_PATH"
 
 cd unischeduler_web
 pipenv install -e . # install from setup.py
