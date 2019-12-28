@@ -1,4 +1,3 @@
-# Unischeduler-web
+# Unischeduler_web
 
-## Basic workflow
-* If using pipenv, don't forget to run pipenv shell before testing
+This web app is just a web wrapper around [unischeduler](https://github.com/Ovsyanka83/unischeduler) script
