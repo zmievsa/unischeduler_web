@@ -14,7 +14,7 @@ source .bashrc
 cd unischeduler_web
 pipenv install -e . # install from setup.py
 cd ..
-sudo echo "[Unit]
+echo "[Unit]
 Description=Gunicorn instance to serve unischeduler_web
 After=network.target
 
@@ -26,8 +26,8 @@ Environment="PATH=/home/$USER/unischeduler_web/.venv/bin"
 ExecStart=/home/$USER/unischeduler_web/.venv/bin/gunicorn --workers 3 --bind unix:unischeduler_web.sock -m 007 wsgi:app
 
 [Install]
-WantedBy=multi-user.target" > /etc/systemd/system/unischeduler_web.service # Create service to run app on startup
-sudo echo "server {
+WantedBy=multi-user.target" | sudo tee /etc/systemd/system/unischeduler_web.service # Create service to run app on startup
+echo "server {
     listen 80;
     server_name scheduler.oatmeal.cc;
 
@@ -35,7 +35,7 @@ sudo echo "server {
         include proxy_params;
         proxy_pass http://unix:/home/$USER/unischeduler_web/unischeduler_web/unischeduler_web.sock;
     }
-}" > /etc/nginx/sites-available/unischeduler_web # Nginx will catch all requests and forward them to unischeduler_web
+}" | sudo tee /etc/nginx/sites-available/unischeduler_web # Nginx will catch all requests and forward them to unischeduler_web
 sudo ln -s /etc/nginx/sites-available/unischeduler_web /etc/nginx/sites-enabled
 sudo rm /etc/nginx/sites-enabled/default
 sudo systemctl start unischeduler_web
