@@ -24,7 +24,7 @@ After=network.target
 [Service]
 User=$USER
 Group=www-data
-WorkingDirectory=/home/$USER/unischeduler_web/unischeduler_web
+WorkingDirectory=/home/$USER/unischeduler_web
 Environment="PATH=/home/$USER/unischeduler_web/.venv/bin"
 ExecStart=/home/$USER/unischeduler_web/.venv/bin/gunicorn --workers 3 --bind unix:unischeduler_web.sock -m 007 wsgi:app
 
@@ -36,7 +36,7 @@ echo "server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/$USER/unischeduler_web/unischeduler_web/unischeduler_web.sock;
+        proxy_pass http://unix:/home/$USER/unischeduler_web/unischeduler_web.sock;
     }
 }" | sudo tee /etc/nginx/sites-available/unischeduler_web # Nginx will catch all requests and forward them to unischeduler_web
 sudo ln -s /etc/nginx/sites-available/unischeduler_web /etc/nginx/sites-enabled
