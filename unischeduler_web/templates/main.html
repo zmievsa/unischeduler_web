@@ -40,6 +40,10 @@
             p.error {
                 border-style: groove;
                 border-color: crimson;
+                background: rgba(153, 0, 0, 0.05);
+                text-align: center;
+                padding-bottom:15px;
+                margin-top: 5px;
             }
             #footer {
                 position: absolute;
@@ -64,7 +68,7 @@
             <p>I convert your schedule to a format that can be exported into any calendar service.</p>
             <p>Don't know how to use me? Here's the <a href="/guide/">guide</a>!</p>
             {% if error %} 
-            <p class="error" style="background: rgba(153, 0, 0, 0.05); text-align: center; padding-bottom:15px"> {{ error }} </p>   
+            <p class="error"> {{ error }} </p>   
             {% endif %}
             <form action="/make_ical/">
                 <br><textarea rows="5" cols="60" name="schedule" autofocus required placeholder="Please, paste your schedule here"></textarea><br>
