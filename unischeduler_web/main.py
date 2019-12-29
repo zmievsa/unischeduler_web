@@ -39,13 +39,15 @@ def make_ical():
             mimetype="text/calendar",
             as_attachment=True,
             attachment_filename="Classes.ics")
-    except unischeduler.util.SchedulerError as e:
-        return str(e)
     except Exception as e:
-        increment(counters['unknown_error'])
-        error = ''.join(format_exception(*sys.exc_info()))
-        log.error(f"isUCF={isUCF}\n{error}")
-        return "An unknown error occured. Contact my developer and he'll fix it ASAP."
+        if isinstance(e, unischeduler.util.SchedulerError):
+            error_text = str(e)
+        else:
+            increment(counters['unknown_error'])
+            error = ''.join(format_exception(*sys.exc_info()))
+            log.error(f"isUCF={isUCF}\n{error}")
+            error_text = "An unknown error occured. Contact my developer and he'll fix it ASAP."
+        return render_template("main.html", successful_uses_count=counters['successful_uses'].value, error=error_text)
     else:
         increment(counters['successful_uses'])
         return response
