@@ -31,13 +31,25 @@ ExecStart=/home/$USER/unischeduler_web/.venv/bin/gunicorn --workers 3 --bind uni
 [Install]
 WantedBy=multi-user.target" | sudo tee /etc/systemd/system/unischeduler_web.service # Create service to run app on startup
 echo "server {
-    listen 80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    ssl_certificate /etc/letsencrypt/live/scheduler.oatmeal.cc/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/scheduler.oatmeal.cc/privkey.pem;
     server_name scheduler.oatmeal.cc;
 
     location / {
         include proxy_params;
         proxy_pass http://unix:/home/$USER/unischeduler_web/unischeduler_web.sock;
     }
+
+}
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name scheduler.oatmeal.cc;
+
+    return 302 https://$server_name$request_uri;
 }" | sudo tee /etc/nginx/sites-available/unischeduler_web # Nginx will catch all requests and forward them to unischeduler_web
 sudo ln -s /etc/nginx/sites-available/unischeduler_web /etc/nginx/sites-enabled
 sudo rm /etc/nginx/sites-enabled/default
