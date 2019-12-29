@@ -7,21 +7,15 @@ sudo ufw allow OpenSSH
 sudo ufw allow 'Nginx Full'
 sudo ufw enable
 pip3 install --user pipenv
-
 cd ~
-
-# for the future work on the server
-echo "export PIPENV_VENV_IN_PROJECT=1
-PYTHON_BIN_PATH='$(python3 -m site --user-base)/bin'
+# # To use python packages from console
+echo "PYTHON_BIN_PATH='$(python3 -m site --user-base)/bin'
 PATH='$PATH:$PYTHON_BIN_PATH'" >> .bashrc 
-
-# Source .bashrc does not work from shell script
-export PIPENV_VENV_IN_PROJECT=1 # To have virtualenv inside project dir
-PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin" 
-PATH="$PATH:$PYTHON_BIN_PATH" # To use python packages from console
+# Source .bashrc won't work in a script
 
 cd unischeduler_web
-pipenv install -e . # install from setup.py
+mkdir .venv # Sets pipenv to put everything in .venv
+python3 -m pipenv install -e . # install from setup.py
 cd ..
 echo "[Unit]
 Description=Gunicorn instance to serve unischeduler_web
