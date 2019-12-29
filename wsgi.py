@@ -1,4 +1,4 @@
-from main import app
+from unischeduler_web import app
 
 if __name__ == "__main__":
     app.run()

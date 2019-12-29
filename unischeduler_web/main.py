@@ -7,8 +7,8 @@ from traceback import format_exception
 import unischeduler
 from flask import Flask, render_template, request, send_file
 
-from counting import increment, retrieve_counters, save_counters
-from util import get_logger
+from .counting import increment, retrieve_counters, save_counters
+from .util import get_logger
 
 CURRENT_DIR = Path(__file__).parent
 PATH_TO_COUNTER_DB = CURRENT_DIR / "data/counters.ini"
