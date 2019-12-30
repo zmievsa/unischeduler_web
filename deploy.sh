@@ -17,6 +17,7 @@ cd unischeduler_web
 mkdir .venv # Sets pipenv to put everything in .venv
 python3 -m pipenv install -e . # install from setup.py
 cd ..
+# gunicorn --preload means that we load our app before launching workers. This makes workers share multiprocessing locks
 echo "[Unit]
 Description=Gunicorn instance to serve unischeduler_web
 After=network.target
@@ -26,7 +27,7 @@ User=$USER
 Group=www-data
 WorkingDirectory=/home/$USER/unischeduler_web
 Environment="PATH=/home/$USER/unischeduler_web/.venv/bin"
-ExecStart=/home/$USER/unischeduler_web/.venv/bin/gunicorn --workers 3 --bind unix:unischeduler_web.sock -m 007 wsgi:app
+ExecStart=/home/$USER/unischeduler_web/.venv/bin/gunicorn --preload --workers 3 --bind unix:unischeduler_web.sock -m 007 wsgi:app
 
 [Install]
 WantedBy=multi-user.target" | sudo tee /etc/systemd/system/unischeduler_web.service # Create service to run app on startup
