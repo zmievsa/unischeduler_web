@@ -7,6 +7,13 @@
         <title>Unischeduler</title>
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>
+            function deleteErrorElement() {
+                elems = document.getElementsByClassName("error");
+                if (elems.length) elems[0].parentElement.removeChild(elems[0]);
+                return true;
+            }
+        </script>
         <style>
             .content {
                 position: relative;
@@ -71,7 +78,7 @@
             {% if error %} 
             <p class="error"> {{ error }} </p>   
             {% endif %}
-            <form action="/make_ical/">
+            <form action="/make_ical/" onsubmit="return deleteErrorElement()">
                 <br><textarea rows="5" cols="60" name="schedule" autofocus required placeholder="Please, paste your schedule here"></textarea><br>
                 Are you a UCF student? <input type="checkbox" name="isUCF"><br>
                 <input type="submit" class="btn btn-primary margin-button submit-btn" value="Submit">
