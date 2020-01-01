@@ -32,7 +32,7 @@ def main_page():
 def make_ical():
     increment(counters['total_uses'])
     try:
-        schedule = request.args.get("schedule")
+        schedule = str(request.args.get("schedule"))
         isUCF = bool(request.args.get("isUCF"))
         response = send_file(
             io.BytesIO(unischeduler.main(schedule, isUCF)),
