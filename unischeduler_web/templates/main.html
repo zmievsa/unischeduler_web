@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Unischeduler</title>
-        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="/static/style.css">
         <title>Unischeduler</title>
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -35,7 +35,7 @@
                 Don't know how to use me? Here's the <a href="/guide/">guide</a>!
               </p>
             {% if error %}
-            <p class="error"> <img src="static/error.gif" alt="error message!"/></p>
+            <p class="error"> <img src="/static/error.gif" alt="Error message:"/></p>
             <p class="error">{{ error }} </p>
             {% endif %}
             <form action="/make_ical/" onsubmit="return deleteErrorElement()">
