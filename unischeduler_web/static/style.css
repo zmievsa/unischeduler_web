@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Hind+Vadodara:300,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+body{
+	font-family: 'Hind Vadodara', sans-serif;
+	font-size: 18px;
+	color: #fff;
+	background-color: #ccc;
+}
+
+a{
+	color: rgb(236, 176,	2);
+}
+
+a:hover{
+	color: #fff;
+}
+
+
+h1{
+	font-family: 'Anton', sans-serif;
+	font-size: 35px;
+
+}
+
+.content {
+	align-self: center;
+	background: #1f1f1f;
+	border: 1px solid #1f1f1f;
+	padding: 2rem;
+	padding-bottom: 1.5rem;
+	margin: 0 auto -50px;
+	position: relative;
+	max-width: 500px;
+	min-height:100%;
+	margin-bottom: -40px;
+	padding-bottom: 120px;
+}
+
+.inner-content{
+		background: #1f1f1f;
+		margin-left: 1em;
+		margin-right: 1em;
+}
+
+.margin-button {
+		margin-top: 0.5em;
+}
+
+.btn{
+	color: #000;
+	background-color: rgb(236, 176,	2);
+	border: #000 solid 2px;
+}
+
+.btn:hover{
+	color: rgb(236, 176,	2);
+	background-color: #fff;
+	border: rgb(236, 176,	2) solid 2px;
+}
+
+
+
+textarea {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		width: 100%;
+}
+
+p {
+		display: block;
+		margin-top: 4px;
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-right: 0;
+}
+
+p.error {
+		/*border-style: groove;
+		border-color: crimson;
+		background-image: url("stas-3.gif");
+		background-position: left;
+		background-repeat: no-repeat;*/
+		color: rgb(179, 0, 0);
+		background-color: #1f1f1f;
+		text-align: left;
+		padding-top: -10px;
+		padding-bottom:5px;
+}
+
+/*.foot{
+	border: 2px solid #1f1f1f;
+	background-color: #1f1f1f;
+	text-align: center;
+}*/
+
+
+header{
+	text-align: center;
+	background-color: #1f1f1f;
+}
+
+.foot{
+	display: block;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	position: static;
+	z-index: auto;
+}
+
+
+
+#footer {
+	margin-bottom: -10rem;
+	width: 500px;
+	height: 0px;
+	position: sticky;
+	font-size: small;
+	text-align: center;
+	width: 100%;
+
+}
+
+#footer p{
+	margin-top: -9px;
+	margin-bottom: 5px;
+}
+
+
+html, body {
+		/* Keeps footer low */
+		height:100%;
+}
+
