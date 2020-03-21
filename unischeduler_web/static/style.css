@@ -55,12 +55,12 @@ form textarea{
 form textarea:focus{
 	  border: rgb(236, 176,	2) solid 1px;
 		outline: rgb(236, 176,	2) solid 1px;
-} */
+}
 
 textarea:active{
 	  border: rgb(236, 176,	2) solid 1px;
 		outline: rgb(236, 176,	2) solid 1px;
-}
+} */
 
 
 .inner-content{
