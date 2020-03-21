@@ -37,6 +37,32 @@ h1{
 	padding-bottom: 120px;
 }
 
+form{
+	padding-top: 15px;
+}
+
+
+form textarea{
+	width: 400px;
+	resize: none;
+}
+
+form textarea:hover{
+  border: rgb(236, 176,	2) solid 1px;
+	outline-color: rgb(236, 176,	2);
+}
+
+form textarea:focus{
+	  border: rgb(236, 176,	2) solid 1px;
+		outline: rgb(236, 176,	2) solid 1px;
+}
+
+textarea:active{
+	  border: rgb(236, 176,	2) solid 1px;
+		outline: rgb(236, 176,	2) solid 1px;
+}
+
+
 .inner-content{
 		background: #1f1f1f;
 		margin-left: 1em;
@@ -48,24 +74,15 @@ h1{
 }
 
 .btn{
-	color: #000;
+	color: #1f1f1f;
 	background-color: rgb(236, 176,	2);
-	border: #000 solid 2px;
+	border: rgb(236, 176,	2) solid 2px;
 }
 
 .btn:hover{
 	color: rgb(236, 176,	2);
 	background-color: #fff;
 	border: rgb(236, 176,	2) solid 2px;
-}
-
-
-
-textarea {
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		width: 100%;
 }
 
 p {
@@ -85,8 +102,6 @@ p.error {
 		color: rgb(179, 0, 0);
 		background-color: #1f1f1f;
 		text-align: left;
-		padding-top: -10px;
-		padding-bottom:5px;
 }
 
 /*.foot{
@@ -95,11 +110,19 @@ p.error {
 	text-align: center;
 }*/
 
+.error img{
+	width: 90px;
+	height: 22.5px;
+	margin-top: 15px;
+	/* padding-bottom: 30px; */
+	/* padding-top: 15px; */
+}
 
 header{
 	text-align: center;
 	background-color: #1f1f1f;
 }
+
 
 .foot{
 	display: block;
@@ -110,8 +133,6 @@ header{
 	position: static;
 	z-index: auto;
 }
-
-
 
 #footer {
 	margin-bottom: -10rem;
@@ -134,4 +155,3 @@ html, body {
 		/* Keeps footer low */
 		height:100%;
 }
-
