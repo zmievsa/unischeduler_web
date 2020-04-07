@@ -55,4 +55,4 @@ def make_ical():
 
 @app.route('/guide/')
 def guide_page():
-    return send_file("static/guide.pdf", mimetype="application/pdf")
+    return render_template("guide.html")
