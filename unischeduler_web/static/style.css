@@ -1,8 +1,15 @@
+/*@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap'); */
+													/*The original web-fonts*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Hind+Vadodara:300,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
 
 body{
 	font-family: 'Hind Vadodara', sans-serif;
+	/*font-family: 'Open Sans', sans-serif;
+	/* font-weight: 400; */
+										/*The original font */
 	font-size: 18px;
 	color: #fff;
 	background-color: #ccc;
@@ -18,8 +25,12 @@ a:hover{
 
 
 h1{
-	font-family: 'Anton', sans-serif;
-	font-size: 35px;
+	/* font-family: 'Anton', sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700; */
+									/*The original font */
+	font-family: 'Fira Code', monospace;
+	font-size: 45px;
 
 }
 
@@ -43,8 +54,9 @@ form{
 
 
 form textarea{
-	width: 400px;
+	width: 100%;
 	resize: none;
+	margin: 0 auto;
 }
 
 /* form textarea:hover{
@@ -99,6 +111,7 @@ p.error {
 		background-image: url("stas-3.gif");
 		background-position: left;
 		background-repeat: no-repeat;*/
+											/*The original style*/
 		color: rgb(179, 0, 0);
 		background-color: #1f1f1f;
 		text-align: left;
@@ -109,6 +122,7 @@ p.error {
 	background-color: #1f1f1f;
 	text-align: center;
 }*/
+				/*Original style for the footer */
 
 .error img{
 	width: 90px;
@@ -116,6 +130,7 @@ p.error {
 	margin-top: 15px;
 	/* padding-bottom: 30px; */
 	/* padding-top: 15px; */
+							/*Error message original styling*/
 }
 
 header{
@@ -152,6 +167,5 @@ header{
 
 
 html, body {
-		/* Keeps footer low */
 		height:100%;
 }
