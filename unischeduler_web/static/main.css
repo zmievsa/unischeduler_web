@@ -1,0 +1,171 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap'); */
+													/*The original web-fonts*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Hind+Vadodara:300,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+body{
+	font-family: 'Hind Vadodara', sans-serif;
+	/*font-family: 'Open Sans', sans-serif;
+	/* font-weight: 400; */
+										/*The original font */
+	font-size: 18px;
+	color: #fff;
+	background-color: #ccc;
+}
+
+a{
+	color: rgb(236, 176,	2);
+}
+
+a:hover{
+	color: #fff;
+}
+
+
+h1{
+	font-family: 'Anton', sans-serif;
+	/*font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	font-family: 'Fira Code', monospace;*/
+									/*The original font */
+	font-size: 45px;
+
+}
+
+.content {
+	align-self: center;
+	background: #1f1f1f;
+	border: 1px solid #1f1f1f;
+	padding: 2rem;
+	padding-bottom: 1.5rem;
+	margin: 0 auto -50px;
+	position: relative;
+	max-width: 500px;
+	min-height:100%;
+	margin-bottom: -40px;
+	padding-bottom: 120px;
+}
+
+form{
+	padding-top: 15px;
+}
+
+
+form textarea{
+	width: 100%;
+	resize: none;
+	margin: 0 auto;
+}
+
+/* form textarea:hover{
+  border: rgb(236, 176,	2) solid 1px;
+	outline-color: rgb(236, 176,	2);
+}
+
+form textarea:focus{
+	  border: rgb(236, 176,	2) solid 1px;
+		outline: rgb(236, 176,	2) solid 1px;
+}
+
+textarea:active{
+	  border: rgb(236, 176,	2) solid 1px;
+		outline: rgb(236, 176,	2) solid 1px;
+} */
+
+
+.inner-content{
+		background: #1f1f1f;
+		margin-left: 1em;
+		margin-right: 1em;
+}
+
+.margin-button {
+		margin-top: 0.5em;
+}
+
+.btn{
+	color: #1f1f1f;
+	background-color: rgb(236, 176,	2);
+	border: rgb(236, 176,	2) solid 2px;
+}
+
+.btn:hover{
+	color: rgb(236, 176,	2);
+	background-color: #fff;
+	border: rgb(236, 176,	2) solid 2px;
+}
+
+p {
+		display: block;
+		margin-top: 4px;
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-right: 0;
+}
+
+p.error {
+		/*border-style: groove;
+		border-color: crimson;
+		background-image: url("stas-3.gif");
+		background-position: left;
+		background-repeat: no-repeat;*/
+											/*The original style*/
+		color: rgb(179, 0, 0);
+		background-color: #1f1f1f;
+		text-align: left;
+}
+
+/*.foot{
+	border: 2px solid #1f1f1f;
+	background-color: #1f1f1f;
+	text-align: center;
+}*/
+				/*Original style for the footer */
+
+.error img{
+	width: 90px;
+	height: 22.5px;
+	margin-top: 15px;
+	/* padding-bottom: 30px; */
+	/* padding-top: 15px; */
+							/*Error message original styling*/
+}
+
+header{
+	text-align: center;
+	background-color: #1f1f1f;
+}
+
+
+.foot{
+	display: block;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	position: static;
+	z-index: auto;
+}
+
+#footer {
+	margin-bottom: -10rem;
+	width: 500px;
+	height: 0px;
+	position: sticky;
+	font-size: small;
+	text-align: center;
+	width: 100%;
+
+}
+
+#footer p{
+	margin-top: -9px;
+	margin-bottom: 5px;
+}
+
+
+html, body {
+		height:100%;
+}
