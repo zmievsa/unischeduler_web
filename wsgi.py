@@ -9,6 +9,7 @@ if len(sys.argv) > 1:
         debug = False
 else:
     port = 5000
+    debug = False
 
 app.config['DEBUG'] = debug
 
