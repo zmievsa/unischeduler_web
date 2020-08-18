@@ -37,6 +37,7 @@ def make_ical():
     try:
         schedule = str(request.args.get("schedule"))
         isUCF = bool(request.args.get("isUCF"))
+        result = unischeduler.main(schedule, isUCF).decode("utf-8")
     except Exception as e:
         if isinstance(e, unischeduler.util.SchedulerError):
             error_text = str(e)
@@ -46,11 +47,11 @@ def make_ical():
             log.error(f"isUCF={isUCF}\n{error}")
             error_text = "An unknown error occured. Contact my developer and he'll fix it ASAP."
         print("ERROR")
-        return render_template("main.html", successful_uses_count=counters['successful_uses'].value, error=error_text)
+        return jsonify(result=error_text, error=True)
     else:
         increment(counters['successful_uses'])
         print("Success!")
-        return jsonify(result=unischeduler.main(schedule, isUCF).decode("utf-8"))
+        return jsonify(result=result, error=False)
 
 
 @app.route('/guide/')

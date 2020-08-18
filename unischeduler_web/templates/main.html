@@ -37,10 +37,10 @@
               <p>
                 Don't know how to use me? Here's the <a href="/guide/">guide</a>!
               </p>
-            {% if error %}
-            <p class="error"> <img src="/static/error-message-red.gif" alt="Error message:"/></p>
-            <p class="error" id="error">{{ error }} </p>
-            {% endif %}
+            <div id="divError" style="display: none;">
+              <p class="error"> <img src="/static/error-message-red.gif" alt="Error message:"/></p>
+              <p class="error" id="error"></p>
+            </div>
             <form>
             <p>
               <textarea rows="5" cols="60" name="schedule" autofocus required placeholder="Please, paste your schedule here"></textarea>
@@ -63,27 +63,39 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
     <script type=text/javascript>
+      function save(data) {
+        $('input[name="submit-btn"]').prop("value", "Submit")
+        var filename = "Classes.ics"
+        var blob = new Blob([data], {type: "text/calendar"});
+        if (window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveBlob(blob, filename);
+        }
+        else {
+            var elem = window.document.createElement('a');
+            elem.href = window.URL.createObjectURL(blob);
+            elem.download = filename;        
+            document.body.appendChild(elem);
+            elem.click();        
+            document.body.removeChild(elem);
+        }
+      }
       $(function() {
         $('input[name="submit-btn"]').bind('click', function() {
           $('input[name="submit-btn"]').prop("value", "Loading...")
+          $('#error').text("")
+          $('#divError').prop("style", "display: none;")
           $.getJSON($SCRIPT_ROOT + 'make_ical/', {
             schedule: $('textarea[name="schedule"]').val(),
             isUCF: $('input[name="isUCF"]').val()
           },
           function(data) {
             $('input[name="submit-btn"]').prop("value", "Submit")
-            var filename = "Classes.ics"
-            var blob = new Blob([data.result], {type: "text/calendar"});
-            if (window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveBlob(blob, filename);
+            if (data.error === false) {
+              save(data.result)
             }
             else {
-                var elem = window.document.createElement('a');
-                elem.href = window.URL.createObjectURL(blob);
-                elem.download = filename;        
-                document.body.appendChild(elem);
-                elem.click();        
-                document.body.removeChild(elem);
+              $('#error').text(data.result)
+              $('#divError').prop("style", "display: inline-block;")
             }
           });
           return false;
