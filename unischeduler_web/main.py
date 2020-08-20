@@ -36,7 +36,7 @@ def make_ical():
     increment(counters['total_uses'])
     try:
         schedule = str(request.args.get("schedule"))
-        isUCF = bool(request.args.get("isUCF"))
+        isUCF = request.args.get("isUCF") == 'true'
         result = unischeduler.main(schedule, isUCF).decode("utf-8")
     except Exception as e:
         if isinstance(e, unischeduler.util.SchedulerError):
