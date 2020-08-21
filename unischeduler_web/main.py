@@ -5,7 +5,7 @@ from pathlib import Path
 from traceback import format_exception
 
 import unischeduler
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, url_for, jsonify
 
 from .counting import increment, retrieve_counters, save_counters
 from .util import get_logger
@@ -25,6 +25,9 @@ log.info("Application start")
 
 @app.route('/')
 def main_page():
+    if not request.script_root:
+        # this assumes that the 'main' view function handles the path '/'
+        request.script_root = url_for('main_page', _external=True)
     return render_template("main.html", successful_uses_count=counters['successful_uses'].value)
 
 
@@ -33,12 +36,8 @@ def make_ical():
     increment(counters['total_uses'])
     try:
         schedule = str(request.args.get("schedule"))
-        isUCF = bool(request.args.get("isUCF"))
-        response = send_file(
-            io.BytesIO(unischeduler.main(schedule, isUCF)),
-            mimetype="text/calendar",
-            as_attachment=True,
-            attachment_filename="Classes.ics")
+        isUCF = request.args.get("isUCF") == 'true'
+        result = unischeduler.main(schedule, isUCF).decode("utf-8")
     except Exception as e:
         if isinstance(e, unischeduler.util.SchedulerError):
             error_text = str(e)
@@ -47,10 +46,12 @@ def make_ical():
             error = ''.join(format_exception(*sys.exc_info()))
             log.error(f"isUCF={isUCF}\n{error}")
             error_text = "An unknown error occured. Contact my developer and he'll fix it ASAP."
-        return render_template("main.html", successful_uses_count=counters['successful_uses'].value, error=error_text)
+        print("ERROR")
+        return jsonify(result=error_text, error=True)
     else:
         increment(counters['successful_uses'])
-        return response
+        print("Success!")
+        return jsonify(result=result, error=False)
 
 
 @app.route('/guide/')
