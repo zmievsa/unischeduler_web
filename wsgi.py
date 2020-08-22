@@ -17,6 +17,7 @@ if debug:
         port = int(sys.argv[1])
 else:
     port = 5000
+    debug = False
 
 if __name__ == "__main__":
     app.run(port=port)

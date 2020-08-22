@@ -3,6 +3,7 @@ from multiprocessing import Lock
 import sys
 
 
+# TODO: Deal with this potential performance bottleneck
 class LockedLogger(logging.Logger):
     """ Simple logger that locks every transaction """
     def __init__(self, lock, *args, **kwargs):
