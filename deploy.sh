@@ -1,4 +1,6 @@
 #!/bin/sh
+# This is just a specialized version of https://github.com/Ovsyanka83/toolbox/blob/master/sh/deploy.sh
+
 set -e
 if [ "$EUID" -eq 0 ]
   then echo "Please, do not run me as root."
